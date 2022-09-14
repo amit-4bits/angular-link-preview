@@ -45,19 +45,25 @@ export function app() {
     // url where the app is hosted; will be useful for generating meta tags (e.g. https://app-domain.com/)
     const hostUrl = req.protocol + '://' + req.get('Host');
 
-    // check whether User-Agent is bot
-    if (isbot(req.header('User-Agent'))) {
-      console.log('SSR');
-      res.render(indexHtml, { req, providers: [
-          { provide: APP_BASE_HREF, useValue: req.baseUrl },
+    res.render(indexHtml, { req, providers: [
+      { provide: APP_BASE_HREF, useValue: req.baseUrl },
 
-          // inject hostUrl to become available in Angular DI system on the server
-          { provide: HOST_URL, useValue: hostUrl },
-      ] });
-    } else {
-      console.log('No SSR');
-      res.sendFile(path.join(__dirname, '../browser/index.html'));
-    }
+      // inject hostUrl to become available in Angular DI system on the server
+      { provide: HOST_URL, useValue: hostUrl },
+  ] });
+    // check whether User-Agent is bot
+    // if (isbot(req.header('User-Agent'))) {
+    //   console.log('SSR');
+    //   res.render(indexHtml, { req, providers: [
+    //       { provide: APP_BASE_HREF, useValue: req.baseUrl },
+
+    //       // inject hostUrl to become available in Angular DI system on the server
+    //       { provide: HOST_URL, useValue: hostUrl },
+    //   ] });
+    // } else {
+    //   console.log('No SSR');
+    //   res.sendFile(path.join(__dirname, '../browser/index.html'));
+    // }
   });
 
   return server;

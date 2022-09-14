@@ -58,7 +58,7 @@ export class MetadataService {
 
       { property: 'og:type', content: metadata.type },
 
-      { property: 'og:image', content: `${this.hostUrl}${metadata.imageRelativeUrl}`}
+      { property: 'og:image', content: `${metadata.imageRelativeUrl}`}
     ];
   }
 }

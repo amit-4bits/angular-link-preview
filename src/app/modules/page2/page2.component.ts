@@ -11,12 +11,13 @@ export class Page2Component implements OnInit {
   constructor(@Optional() private metadataService: MetadataService) { }
 
   ngOnInit(): void {
-    if (this.metadataService) {
-      this.metadataService.updateMetadata({
-        title: 'Page 2',
-        description: 'There is some content on page 2'
-      });
-    }
+    this.metadataService.updateMetadata({
+      title: 'SpaceJammit',
+      description: 'This is Amit\'s content for spacejammit',
+      imageRelativeUrl: 'https://source.unsplash.com/user/c_v_r/1900x800',
+      keywords: ['page 2', 'content', 'angular universal'],
+      type: 'article',
+    });
   }
 
 }
